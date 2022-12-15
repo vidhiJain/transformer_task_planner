@@ -1,7 +1,7 @@
 # Transformer Task Planner
 Vidhi Jain, Yixin Lin, Eric Undersander, Yonatan Bisk and Akshara Rai, Transformers are Adaptable Task Planners, 6th Conference on Robot Learning (CoRL 2022).
 
-[OpenReview](https://openreview.net/forum?id=Eal_lL08v_l)
+[OpenReview](https://openreview.net/forum?id=Eal_lL08v_l) | 
 [Website](https://sites.google.com/andrew.cmu.edu/ttp/home)
 
 
