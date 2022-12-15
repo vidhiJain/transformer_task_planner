@@ -1,0 +1,14 @@
+# @package hydra.launcher
+submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+timeout_min: 1440
+cpus_per_task: 4
+gpus_per_node: 1
+tasks_per_node: 1
+mem_gb: 24
+nodes: 1
+name: ${hydra.job.name}
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+partition: learnlab  # [devlab / prioritylab / learnlab / scavenge]
+# comment: "NeurIPS submission : Transformer Task Planner"
+signal_delay_s: 120
+max_num_timeout: 5

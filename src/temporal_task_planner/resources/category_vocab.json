@@ -1,0 +1,15 @@
+{
+    "<pad>": "pad",
+    "<act>": "act",
+    "<goal>": "goal",
+    "ktc_clutter_tray_": "Tray",
+    "frl_apartment_plate_01_": "B-Plate",
+    "frl_apartment_plate_01_small_": "Q-Plate",
+    "frl_apartment_kitchen_utensil_06_": "Glass",
+    "frl_apartment_cup_02_": "Cup",
+    "frl_apartment_bowl_07_small_": "SW-Bowl",
+    "frl_apartment_bowl_03_": "BB-Bowl",
+    "ktc_dishwasher_:0000_joint_1": "Bottom-Rack",
+    "ktc_dishwasher_:0000_joint_2": "Door",
+    "ktc_dishwasher_:0000_joint_3": "Top-Rack"
+}

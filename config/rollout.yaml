@@ -1,0 +1,40 @@
+defaults:
+- envs: full_visible_env # partial_visible_env
+- policy: expert_pick_place_with_pref_policy # expert_partial_env_pick_place_with_pref_policy # 
+- transformer_model@model: single_model
+- submodule/category_encoder@category_encoder: mlp 
+- submodule/pose_encoder@pose_encoder: fourier_mlp 
+- submodule/temporal_encoder@temporal_encoder: embed
+- submodule/reality_marker_encoder@reality_marker_encoder: embed
+- _self_
+
+session_id_start: 0
+session_id_end: 10
+dirpath: "data/sample/"
+chkpt_path: 'output/pick_only-False_partial-v3_single_model/context_history=0,data_name=partial,data_version=3,device=cuda,pick_only=false/best_pickplace_TP0.pt'
+
+# init params assigned to sub-files here!
+# SAME AS USED IN LEARNER.YAML 
+pick_only: false
+batch_size: 32
+num_targets_per_step: 64
+# init params assigned to sub-files here!
+# data
+data_name: partial 
+data_version: 3
+context_history: 2
+
+# model arch
+category_embed_size: 64
+pose_embed_size: 128
+temporal_embed_size: 32 
+marker_embed_size: 32
+d_model: 256
+d_hid: 512
+num_encoder_layers: 2
+n_input_dim: 3
+device: 'cpu'
+
+hydra:
+  run:
+    dir: . 

@@ -1,0 +1,18 @@
+session_id_start: 0
+session_id_end: 10
+session: artifacts_sample/full_visibility/sess_1.json
+regex_session: '*.json'
+
+load_top_rack_first: false
+category_order_numbers_top_rack: "1253"
+category_order_numbers_bottom_rack: "064"
+
+dirpath: "data/pickplace/partial_pref_${category_order_numbers_top_rack}_${category_order_numbers_bottom_rack}_${load_top_rack_first}/test/session_json"
+output_folder: "data/pickplace/partial_pref_${category_order_numbers_top_rack}_${category_order_numbers_bottom_rack}_${load_top_rack_first}/test/session_videos"
+show_video : False
+make_video : True
+no_clutter: False
+
+hydra:
+  run:
+    dir: . 

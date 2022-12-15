@@ -1,0 +1,9 @@
+_target_: temporal_task_planner.envs.dishwasher_env.InteractivePartialVisibleEnv
+reference_session_path: None
+max_objects_in_rack: 8
+max_instantiated_utensils: 5
+num_animate_frames: 10
+init_task_visibility: 0.4
+max_place_poses: 5
+max_steps: 50
+pick_only: ${pick_only} 

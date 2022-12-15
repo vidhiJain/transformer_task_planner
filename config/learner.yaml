@@ -1,0 +1,104 @@
+defaults:
+# rollout
+- envs: full_visible_env # full_visible_env
+- policy: learned_policy # expert_pick_only_policy
+# model
+- transformer_model@model: single_model
+- submodule/category_encoder@category_encoder: mlp 
+- submodule/pose_encoder@pose_encoder: fourier_mlp 
+- submodule/temporal_encoder@temporal_encoder: embed
+- submodule/reality_marker_encoder@reality_marker_encoder: embed
+- utils_trainer/criterion@criterion: pick_loss
+- utils_trainer/optimizer_partial@optimizer_partial: sgd
+- utils_trainer/scheduler_partial@scheduler_partial: exponential_lr
+- _self_
+
+id: ''
+pick_only: false
+batch_size: 32
+num_targets_per_step: 64
+# init params assigned to sub-files here!
+# data
+data_name: demo-pref
+data_version: 0
+pref: pref_0123_456-top_first-True_back-center
+num_objects_per_rack: 5
+dataset_path: 'artifacts/${data_name}:v${data_version}/${pref}/${num_objects_per_rack}'  # "artifacts/${data_name}-visible-single-pref:v${data_version}"
+context_history: 0
+
+# model arch
+category_embed_size: 64
+pose_embed_size: 128
+temporal_embed_size: 32 
+marker_embed_size: 32
+d_model: 256
+d_hid: 512
+num_encoder_layers: 2
+n_input_dim: 3
+
+# optim
+lr: 0.01
+patience: 1000000000
+gamma: 0.9 # 0.99
+
+# logging
+logging_interval: 10 # 100
+rollout_interval: 5000
+max_train_evals: 1
+max_val_evals: 1
+
+# misc
+seed: 42
+device: 'cpu'
+pkg_root: ''
+
+learner:
+  _target_: temporal_task_planner.trainer.learner.Learner
+  config: 
+      seed: ${seed}
+      context_history: ${context_history}
+      # max_epochs: 100
+      max_steps: 50000
+      num_targets_per_step: ${num_targets_per_step}
+      max_session_data_limit: 101
+      batch_size: ${batch_size}
+      patience: ${patience}
+      load_chkpt: true
+      logging_interval: ${logging_interval}
+      rollout_interval: ${rollout_interval}
+      pick_only: ${pick_only}
+      device: ${device}
+      chkpt_name: best_pickplace_TP
+      dataset_path: ${dataset_path} 
+      data: 
+        name: ${data_name} # full 
+        version: ${data_version}  # 4
+      pkg_root: ${pkg_root}
+      max_train_evals: ${max_train_evals}
+      max_val_evals: ${max_val_evals}
+  model: ${model}
+  criterion: ${criterion}
+  optimizer_partial: ${optimizer_partial}
+  scheduler_partial: ${scheduler_partial}
+  env: ${envs}
+
+wandb:
+  project: "pick_only-${pick_only}_${data_name}-v${data_version}_single_model" 
+  entity: 'dishwasher_arrange'
+
+hydra:
+  run:
+    dir: output/${wandb.project}/${hydra.job.override_dirname}/
+  sweep:
+    dir: multirun/${wandb.project}
+    subdir: ${pref}-${num_objects_per_rack}/cw${context_history}_b${batch_size}_nT${num_targets_per_step}/seed-${seed} 
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - id
+          - seed
+          - wandb.project
+          - logging_interval
+          - saving_interval
+          - rollout_interval

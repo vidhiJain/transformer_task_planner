@@ -1,0 +1,9 @@
+[submodule "third_party/habitat-sim"]
+	path = third_party/habitat-sim
+	url = git@github.com:eundersander/habitat-sim.git
+[submodule "third_party/kitchen_arrange"]
+	path = third_party/kitchen_arrange
+	url = git@github.com:eundersander/kitchen_arrange.git
+[submodule "third_party/transformers"]
+	path = third_party/transformers
+	url = https://github.com/huggingface/transformers.git

@@ -1,0 +1,33 @@
+name: temporal_task_planner
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - attrs
+  - black
+  - cmake
+  - gitpython
+  - gym
+  - imageio
+  - imageio-ffmpeg
+  - ipdb
+  - opencv
+  - matplotlib
+  - numba
+  - numpy
+  - pandas
+  - pillow
+  - pip
+  - python=3.8
+  - quaternion
+  - scipy
+  - scikit-learn
+  - textdistance
+  - torchvision
+  - tqdm
+  - wandb
+  - pip:
+    - hydra-core
+    - magnum
+    - vocab
