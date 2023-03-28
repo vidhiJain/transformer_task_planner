@@ -67,11 +67,6 @@ export CUBLAS_WORKSPACE_CONFIG=:4096:8
 
 ## Data 
 ### 1. Kitchen assets
-On devfair:
-```
-unzip /checkpoint/yixinlin/data/data_v3.zip -d third_party/kitchen_arrange/data/
-unzip /checkpoint/yixinlin/data/scenes.zip -d third_party/kitchen_arrange/data/lighthouse_kitchen_dataset/scenes/
-```
 
 Download from scratch and unzip it:
 - [data_v3.zip](https://drive.google.com/drive/folders/1A24fBE077AFecZVRe9YPgTdu6fDA0EaC)
